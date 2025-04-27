@@ -14,10 +14,10 @@ export default function Header() {
                 <nav className='w-full mx-auto flex justify-between items-center gap-4 px-4 py-3'>
                     <a href='#' className='flex items-center gap-x-1 text-2xl'>
                         <PiTShirtBold />
-                        <h3>EMY STYLE</h3>
+                        <h3 className='hidden sm:inline'>EMY STYLE</h3>
                     </a>
                     <div className='flex flex-1 justify-start items-center h-8'>
-                        <a href="#" className='inline-flex items-center justify-center max-w-max h-full hover:bg-zinc-100 rounded-[6px] transition-all'>Categories
+                        <a href="#" className='hidden md:inline-flex items-center justify-center max-w-max h-full hover:bg-zinc-100 rounded-[6px] transition-all'>Categories
                             <div className='invisible hover:visible'>
                                 <a href="#">
                                     <div>
@@ -31,7 +31,7 @@ export default function Header() {
                         </a>
                     </div>
                     <div className='flex flex-1 justify-end gap-x-4 *:hover:bg-zinc-100 transition-all'>
-                        <button className='flex justify-center flex-1 items-center border gap-x-3 rounded-2xl '>
+                        <button className='flex justify-center flex-1 items-center border gap-x-3 rounded-2xl text-nowrap'>
                             <CiSearch className='size-6' />
                             Search Products
                         </button>

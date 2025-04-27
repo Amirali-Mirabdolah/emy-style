@@ -2,8 +2,25 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRightLong } from "react-icons/fa6";
 import ProductsBox from '../Components/ProductsBox';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import useProducts from '../hooks/useProducts';
 
 export default function HomePage() {
+
+
+
+  const queryClient = useQueryClient()
+  const { data,error,isLoading } = useProducts()
+  console.log(data);
+
+  // fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=10')
+  //   .then(res => res.json())
+  //   .then(res => console.log(res))
+  
+  if(isLoading){
+    return <p>Loading ...</p>
+  }
+
   return (
     <>
       <main className='min-h-screen'>
@@ -16,14 +33,18 @@ export default function HomePage() {
       </main>
 
       <section className='container mx-auto p-4'>
-        <div className='flex w-full justify-between items-center'>
-          <h4>Featured Products</h4>
+        <div className='flex w-full justify-between items-center mb-4'>
+          <h4 className='text-lg xl:text-2xl font-bold'>Featured Products</h4>
           <Link to="/products" className='inline-flex items-center justify-center h-9 rounded-md px-3 gap-2 hover:bg-zinc-100 transition-all'>
             All Products
             <FaArrowRightLong />
           </Link>
         </div>
-        <ProductsBox/>
+        <div className='grid grid-cols-2 lg:grid-cols-5 gap-4'>
+          {data?.map((products) => (
+            <ProductsBox key={products.id} {...products} />
+          ))}
+        </div>
       </section>
 
     </>
