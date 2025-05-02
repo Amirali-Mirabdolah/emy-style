@@ -1,4 +1,3 @@
-import React from 'react'
 import { getProducts } from '../services/product'
 import { useQuery } from '@tanstack/react-query'
 

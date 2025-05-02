@@ -1,22 +1,28 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { PiTShirtBold } from "react-icons/pi";
 import { CiSearch } from "react-icons/ci";
 import { TbShoppingBag } from "react-icons/tb";
 import { TbMoon } from "react-icons/tb";
 import { GoSun } from "react-icons/go";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import modalsContext from '../Contexts/modalsContext';
+import { Link } from 'react-router-dom';
+
 
 
 export default function Header() {
+
+    const contexDate = useContext(modalsContext)
+
     return (
         <>
             <header className='sticky top-0 z-50 bg-white border-b border-zinc-300'>
-                <nav className='w-full mx-auto flex justify-between items-center gap-4 px-4 py-3'>
-                    <a href='#' className='flex items-center gap-x-1 text-2xl'>
+                <nav className='w-full mx-auto flex justify-center md:justify-between items-center gap-4 px-4 py-3'>
+                    <Link to={'/'} className='flex items-center gap-x-1 text-2xl'>
                         <PiTShirtBold />
-                        <h3 className='hidden sm:inline'>EMY STYLE</h3>
-                    </a>
-                    <div className='flex flex-1 justify-start items-center h-8'>
+                        <h3 className='hidden md:inline'>EMY STYLE</h3>
+                    </Link>
+                    <div className='md:flex md:flex-1 justify-start items-center h-8'>
                         <a href="#" className='hidden md:inline-flex items-center justify-center max-w-max h-full hover:bg-zinc-100 rounded-[6px] transition-all'>Categories
                             <div className='invisible hover:visible'>
                                 <a href="#">
@@ -30,8 +36,12 @@ export default function Header() {
                             <MdKeyboardArrowDown />
                         </a>
                     </div>
-                    <div className='flex flex-1 justify-end gap-x-4 *:hover:bg-zinc-100 transition-all'>
-                        <button className='flex justify-center flex-1 items-center border gap-x-3 rounded-2xl text-nowrap'>
+                    <div className='flex w-4/5 md:flex-1 md:justify-end gap-x-4 *:hover:bg-zinc-100 transition-all'>
+                        <button onClick={() => {
+                            contexDate.setShowSearchBox(true)
+                            console.log(contexDate.isShowSearchBox);
+
+                        }} className='flex justify-center flex-1 items-center border gap-x-3 rounded-2xl text-nowrap'>
                             <CiSearch className='size-6' />
                             Search Products
                         </button>

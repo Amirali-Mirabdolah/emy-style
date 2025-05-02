@@ -1,23 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRightLong } from "react-icons/fa6";
 import ProductsBox from '../Components/ProductsBox';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import useProducts from '../hooks/useProducts';
+import modalsContext from '../Contexts/modalsContext';
+import SearchInput from '../Components/SearchInput';
 
 export default function HomePage() {
 
 
+  const contextData = useContext(modalsContext)
 
-  const queryClient = useQueryClient()
-  const { data,error,isLoading } = useProducts()
+  // const queryClient = useQueryClient()
+  const { data, error, isLoading } = useProducts()
   console.log(data);
 
   // fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=10')
   //   .then(res => res.json())
   //   .then(res => console.log(res))
-  
-  if(isLoading){
+
+  if (isLoading) {
     return <p>Loading ...</p>
   }
 
@@ -40,13 +43,16 @@ export default function HomePage() {
             <FaArrowRightLong />
           </Link>
         </div>
-        <div className='grid grid-cols-2 lg:grid-cols-5 gap-4'>
+        <div className='grid sm:grid-cols-2 lg:grid-cols-5 gap-4'>
           {data?.map((products) => (
-            <ProductsBox key={products.id} {...products} />
+            <Link to={`/products/${products.id}`} key={products.id}>
+              <ProductsBox {...products} />
+            </Link>
+
           ))}
         </div>
       </section>
-
+      {contextData.isShowSearchBox && <SearchInput />}
     </>
   )
 }
