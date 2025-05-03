@@ -7,6 +7,7 @@ import HomePage from "./Pages/HomePage"
 import AllProducts from './Pages/AllProducts'
 import ProductPage from './Pages/ProductPage'
 import modalsContext from './Contexts/modalsContext'
+import SearchInput from './Components/SearchInput'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/products/:productID' element={<ProductPage />} />
         </Routes>
       </modalsContext.Provider>
+      {/* {isShowSearchBox && <SearchInput />} */}
     </>
   )
 }

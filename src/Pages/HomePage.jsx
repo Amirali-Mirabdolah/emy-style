@@ -33,7 +33,7 @@ export default function HomePage() {
           <h1 className='text-3xl text-white font-bold lg:text-5xl'>A Minimal E-commerce Platform</h1>
           <p className='text-white lg:text-xl'>built whith ReactJS and Tailwind CSS</p>
         </div>
-      </main>
+      
 
       <section className='container mx-auto p-4'>
         <div className='flex w-full justify-between items-center mb-4'>
@@ -52,6 +52,7 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      </main>
       {contextData.isShowSearchBox && <SearchInput />}
     </>
   )
