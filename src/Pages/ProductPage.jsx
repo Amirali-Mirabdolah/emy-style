@@ -10,6 +10,8 @@ import { IoCartOutline } from "react-icons/io5";
 import { HiOutlineTrash } from "react-icons/hi";
 import { HiPlus } from "react-icons/hi";
 import { HiMinus } from "react-icons/hi";
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '../store/cart-slice'
 
 export default function ProductPage() {
 
@@ -20,9 +22,13 @@ export default function ProductPage() {
   const [quantity, setQuantity] = useState(1)
   const [isShowTrash, setIsShowTrash] = useState(false)
 
-  const addToCartButton = () => {
-    setShowProductCounter(true)
-  }
+  const cart = useSelector((state) => state.cart)
+  console.log(cart);
+
+  const dispatch = useDispatch()
+  const itemInCart = useSelector(state => state.cart.cartItems)
+  console.log(itemInCart);
+
 
   const contextData = useContext(modalsContext)
   const params = useParams()
@@ -31,6 +37,11 @@ export default function ProductPage() {
 
   const { data, isLoading } = useProduct(productID)
   const { id, title, slug, description, images, price } = data || {}
+
+  const addToCartButton = () => {
+    dispatch(addToCart(data))
+    setShowProductCounter(true)
+  }
 
   if (isLoading) {
     return (
