@@ -16,7 +16,7 @@ export default function Header() {
 
     return (
         <>
-            <header className='sticky top-0 z-50 bg-white border-b border-zinc-300'>
+            <header className='sticky top-0 z-20 bg-white border-b border-zinc-300'>
                 <nav className='w-full mx-auto flex justify-center md:justify-between items-center gap-4 px-4 py-3'>
                     <Link to={'/'} className='flex items-center gap-x-1 text-2xl'>
                         <PiTShirtBold />
@@ -46,7 +46,7 @@ export default function Header() {
                             Search Products
                         </button>
                         {/* <div className='*:border *:p-1 *:rounded-[5px] transition-all space-x-3'> */}
-                        <button className='p-[3px] border rounded-[6px]'>
+                        <button onClick={() => contexDate.setIsShowCart(true)} className='p-[3px] border rounded-[6px]'>
                             <TbShoppingBag className='size-6' />
                         </button>
                         <button className='p-[3px] border rounded-[6px]'>

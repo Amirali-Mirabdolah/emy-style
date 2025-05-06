@@ -8,16 +8,20 @@ import AllProducts from './Pages/AllProducts'
 import ProductPage from './Pages/ProductPage'
 import modalsContext from './Contexts/modalsContext'
 import SearchInput from './Components/SearchInput'
+import Cart from './Components/Cart'
 
 function App() {
 
   const [isShowSearchBox, setShowSearchBox] = useState(false)
+  const [isShowCart, setIsShowCart] = useState(false)
 
   return (
     <>
       <modalsContext.Provider value={{
         isShowSearchBox,
-        setShowSearchBox
+        setShowSearchBox,
+        isShowCart,
+        setIsShowCart
       }}>
         <Header />
         <Routes>
@@ -26,6 +30,7 @@ function App() {
           <Route path='/products/:productID' element={<ProductPage />} />
         </Routes>
       </modalsContext.Provider>
+      {/* <Cart /> */}
       {/* {isShowSearchBox && <SearchInput />} */}
     </>
   )

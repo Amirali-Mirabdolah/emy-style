@@ -11,7 +11,9 @@ import { HiOutlineTrash } from "react-icons/hi";
 import { HiPlus } from "react-icons/hi";
 import { HiMinus } from "react-icons/hi";
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from '../store/cart-slice'
+import { addToCart, increaseQuantity } from '../store/cart-slice'
+import BreadCrumb from '../Components/BreadCrumb'
+import Loader from '../Components/Loader'
 
 export default function ProductPage() {
 
@@ -27,7 +29,8 @@ export default function ProductPage() {
 
   const dispatch = useDispatch()
   const itemInCart = useSelector(state => state.cart.cartItems)
-  console.log(itemInCart);
+  const productQuantity = itemInCart[0]?.quantity
+  // console.log(itemInCart[0].quantity);
 
 
   const contextData = useContext(modalsContext)
@@ -45,9 +48,7 @@ export default function ProductPage() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="w-12 h-12 border-4 border-gray-300 border-t-zinc-800 rounded-full animate-spin"></div>
-      </div>
+      <Loader />
     )
   }
 
@@ -55,27 +56,7 @@ export default function ProductPage() {
     <>
       <main className='min-h-screen'>
         <div className='container mx-auto p-4'>
-          {/* BreadCrumb */}
-          <ul className='flex gap-2 *:flex *:items-center *:gap-x-1.5 '>
-            <li>
-              <Link to={"/"}>
-                <p>Home</p>
-              </Link>
-              <FaChevronRight />
-            </li>
-            <li>
-              <Link to={"/"}>
-                <p>{data?.category.slug}</p>
-              </Link>
-              <FaChevronRight />
-            </li>
-            <li>
-              <Link to={"/"}>
-                <p>{title}</p>
-              </Link>
-            </li>
-          </ul>
-          {/* BreadCrumb */}
+          <BreadCrumb product={data} />
           <div className='mt-4 gap-x-6 flex justify-between'>
             <div className='h-96'>
               <img className='object-cover rounded-xl' src={images} alt="" />
@@ -94,17 +75,17 @@ export default function ProductPage() {
                   Add
                 </button>
                 <div className={`${showProductCounter ? 'flex' : 'hidden'} items-center gap-3`}>
-                  <button onClick={() => setShowProductCounter(false)} className='border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all '>
-                    <HiOutlineTrash className='text-red-500 size-5' />
+                  <button onClick={() => setShowProductCounter(false)} className={'border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all'}>
+                    <HiOutlineTrash className='hidden text-red-500 size-5' />
                   </button>
-                  <span>{quantity}</span>
+                  <span>{productQuantity}</span>
                   <div>
-                    <button className='border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all'>
+                    <button onClick={() => dispatch(increaseQuantity(data))} className='border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all'>
                       <HiPlus className='text-green-600 size-5' />
                     </button>
-                    <button className='hidden'>
+                    {/* <button className={`${productQuantity > 1 ? '' : 'hidden'} border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all`}>
                       <HiMinus />
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
