@@ -14,6 +14,7 @@ function App() {
 
   const [isShowSearchBox, setShowSearchBox] = useState(false)
   const [isShowCart, setIsShowCart] = useState(false)
+  const [showProductCounter, setShowProductCounter] = useState(false)
 
   return (
     <>
@@ -21,7 +22,9 @@ function App() {
         isShowSearchBox,
         setShowSearchBox,
         isShowCart,
-        setIsShowCart
+        setIsShowCart,
+        showProductCounter,
+        setShowProductCounter
       }}>
         <Header />
         <Routes>
@@ -30,7 +33,7 @@ function App() {
           <Route path='/products/:productID' element={<ProductPage />} />
         </Routes>
       </modalsContext.Provider>
-      {/* <Cart /> */}
+      {/* {isShowCart && <Cart />} */}
       {/* {isShowSearchBox && <SearchInput />} */}
     </>
   )

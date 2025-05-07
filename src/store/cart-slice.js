@@ -10,8 +10,8 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      console.log('state in addToCart: ', state, 'action ', action);
-      console.log(state.cartItems)
+      // console.log('state in addToCart: ', state, 'action ', action);
+      // console.log(state.cartItems)
       const existingItem = state.cartItems.find(item => item.id === action.payload.id);
       if (existingItem) {
         existingItem.quantity += 1;

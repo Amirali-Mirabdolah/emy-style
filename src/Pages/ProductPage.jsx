@@ -11,39 +11,49 @@ import { HiOutlineTrash } from "react-icons/hi";
 import { HiPlus } from "react-icons/hi";
 import { HiMinus } from "react-icons/hi";
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart, increaseQuantity } from '../store/cart-slice'
+import { addToCart, decreaseQuantity, increaseQuantity, removeFromCart } from '../store/cart-slice'
 import BreadCrumb from '../Components/BreadCrumb'
 import Loader from '../Components/Loader'
+import Cart from '../Components/Cart'
 
 export default function ProductPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+  const contextData = useContext(modalsContext)
+  const isShowProductCounter = contextData.isShowProductCounter
+
+  const params = useParams()
+  const productID = params.productID
+
+  const { data, isLoading } = useProduct(productID)
+  const { id, title, slug, description, images, price } = data || {}
+
   const [showProductCounter, setShowProductCounter] = useState(false)
   const [quantity, setQuantity] = useState(1)
   const [isShowTrash, setIsShowTrash] = useState(false)
 
   const cart = useSelector((state) => state.cart)
-  console.log(cart);
+  // console.log('cart.cartItems :', cart.cartItems);
 
   const dispatch = useDispatch()
   const itemInCart = useSelector(state => state.cart.cartItems)
-  const productQuantity = itemInCart[0]?.quantity
+  // const productQuantity = itemInCart[0]?.quantity
+
+  const existingProduct = itemInCart.find(item => item.id === id)
+  console.log('existingProduct: ', existingProduct)
   // console.log(itemInCart[0].quantity);
-
-
-  const contextData = useContext(modalsContext)
-  const params = useParams()
-  const productID = params.productID
-  const idToString = productID.toString()
-
-  const { data, isLoading } = useProduct(productID)
-  const { id, title, slug, description, images, price } = data || {}
 
   const addToCartButton = () => {
     dispatch(addToCart(data))
     setShowProductCounter(true)
+  }
+
+  const removeFromCartButton = () => {
+    setShowProductCounter(false)
+    dispatch(removeFromCart(data))
   }
 
   if (isLoading) {
@@ -57,7 +67,7 @@ export default function ProductPage() {
       <main className='min-h-screen'>
         <div className='container mx-auto p-4'>
           <BreadCrumb product={data} />
-          <div className='mt-4 gap-x-6 flex justify-between'>
+          <div className='mt-4 gap-x-6 flex items-center'>
             <div className='h-96'>
               <img className='object-cover rounded-xl' src={images} alt="" />
             </div>
@@ -68,27 +78,53 @@ export default function ProductPage() {
                 <h3 className='text-lg font-black'>Description</h3>
                 <p className='border-b pb-5 text-zinc-500'>{description}</p>
               </div>
-              {/* ProductCounter */}
               <div className='h-10 flex items-center'>
-                <button onClick={addToCartButton} className={`${showProductCounter ? 'hidden' : 'flex'} items-center gap-x-1 px-4 py-2 cursor-pointer text-white bg-zinc-700 hover:bg-zinc-600 transition-all w-fit h-10 rounded-md`}>
-                  <IoCartOutline className='size-5' />
-                  Add
-                </button>
-                <div className={`${showProductCounter ? 'flex' : 'hidden'} items-center gap-3`}>
-                  <button onClick={() => setShowProductCounter(false)} className={'border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all'}>
-                    <HiOutlineTrash className='hidden text-red-500 size-5' />
+                {existingProduct ?
+                  <div className='flex items-center gap-3'>
+                    <button onClick={removeFromCartButton} className={`${existingProduct.quantity > 1 ? 'hidden' : ''} border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all`}>
+                      <HiOutlineTrash className='text-red-500 size-5' />
+                    </button>
+                    <button onClick={() => dispatch(decreaseQuantity(data))} className={`${existingProduct.quantity > 1 ? '' : 'hidden'} border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all`}>
+                      <HiMinus className='text-red-500 size-5' />
+                    </button>
+                    <span>{existingProduct.quantity}</span>
+                    <div>
+                      <button onClick={() => dispatch(increaseQuantity(data))} className='border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all'>
+                        <HiPlus className='text-green-600 size-5' />
+                      </button>
+                    </div>
+                  </div>
+
+                  : <button onClick={addToCartButton} className={`${showProductCounter ? 'hidden' : 'flex'} items-center gap-x-1 px-4 py-2 cursor-pointer text-white bg-zinc-700 hover:bg-zinc-600 transition-all w-fit h-10 rounded-md`}>
+                    <IoCartOutline className='size-5' />
+                    Add
+                  </button>}
+              </div>
+              {/* ProductCounter */}
+              {/* <div className='h-10 flex items-center'> */}
+              {/* <button onClick={addToCartButton} className={`${showProductCounter ? 'hidden' : 'flex'} items-center gap-x-1 px-4 py-2 cursor-pointer text-white bg-zinc-700 hover:bg-zinc-600 transition-all w-fit h-10 rounded-md`}>
+                <IoCartOutline className='size-5' />
+                Add
+              </button> */}
+
+              {/* Counter button */}
+              {/* <div className={`${showProductCounter ? 'flex' : 'hidden'} items-center gap-3`}>
+                  <button onClick={removeFromCartButton} className={`${productQuantity > 1 ? 'hidden' : ''} border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all`}>
+                    <HiOutlineTrash className='text-red-500 size-5' />
                   </button>
-                  <span>{productQuantity}</span>
+                  <button onClick={() => dispatch(decreaseQuantity(data))} className={`${productQuantity > 1 ? '' : 'hidden'} border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all`}>
+                    <HiMinus className='text-red-500 size-5' />
+                  </button>
+                  <span>{existingProduct?.quantity}</span>
                   <div>
                     <button onClick={() => dispatch(increaseQuantity(data))} className='border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all'>
                       <HiPlus className='text-green-600 size-5' />
                     </button>
-                    {/* <button className={`${productQuantity > 1 ? '' : 'hidden'} border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all`}>
-                      <HiMinus />
-                    </button> */}
                   </div>
-                </div>
-              </div>
+                </div> */}
+              {/* Counter Button */}
+
+              {/* </div> */}
               {/* ProductCounter */}
             </div>
           </div>
@@ -96,6 +132,7 @@ export default function ProductPage() {
         </div>
       </main>
       {contextData.isShowSearchBox && <SearchInput />}
+      {contextData.isShowCart && <Cart />}
     </>
   )
 }

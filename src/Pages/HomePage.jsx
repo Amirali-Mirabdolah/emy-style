@@ -12,12 +12,9 @@ import Cart from '../Components/Cart';
 
 export default function HomePage() {
 
-
   const contextData = useContext(modalsContext)
-
   const { data, error, isLoading } = useProducts()
-  console.log(data);
-
+  
   if (isLoading) {
     return (
       <Loader />
