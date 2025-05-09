@@ -15,6 +15,7 @@ import { addToCart, decreaseQuantity, increaseQuantity, removeFromCart } from '.
 import BreadCrumb from '../Components/BreadCrumb'
 import Loader from '../Components/Loader'
 import Cart from '../Components/Cart'
+import Counter from '../Components/Counter'
 
 export default function ProductPage() {
 
@@ -80,52 +81,12 @@ export default function ProductPage() {
               </div>
               <div className='h-10 flex items-center'>
                 {existingProduct ?
-                  <div className='flex items-center gap-3'>
-                    <button onClick={removeFromCartButton} className={`${existingProduct.quantity > 1 ? 'hidden' : ''} border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all`}>
-                      <HiOutlineTrash className='text-red-500 size-5' />
-                    </button>
-                    <button onClick={() => dispatch(decreaseQuantity(data))} className={`${existingProduct.quantity > 1 ? '' : 'hidden'} border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all`}>
-                      <HiMinus className='text-red-500 size-5' />
-                    </button>
-                    <span>{existingProduct.quantity}</span>
-                    <div>
-                      <button onClick={() => dispatch(increaseQuantity(data))} className='border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all'>
-                        <HiPlus className='text-green-600 size-5' />
-                      </button>
-                    </div>
-                  </div>
-
+                  <Counter product={data} removeFromCartButton={removeFromCartButton} />
                   : <button onClick={addToCartButton} className={`${showProductCounter ? 'hidden' : 'flex'} items-center gap-x-1 px-4 py-2 cursor-pointer text-white bg-zinc-700 hover:bg-zinc-600 transition-all w-fit h-10 rounded-md`}>
                     <IoCartOutline className='size-5' />
                     Add
                   </button>}
               </div>
-              {/* ProductCounter */}
-              {/* <div className='h-10 flex items-center'> */}
-              {/* <button onClick={addToCartButton} className={`${showProductCounter ? 'hidden' : 'flex'} items-center gap-x-1 px-4 py-2 cursor-pointer text-white bg-zinc-700 hover:bg-zinc-600 transition-all w-fit h-10 rounded-md`}>
-                <IoCartOutline className='size-5' />
-                Add
-              </button> */}
-
-              {/* Counter button */}
-              {/* <div className={`${showProductCounter ? 'flex' : 'hidden'} items-center gap-3`}>
-                  <button onClick={removeFromCartButton} className={`${productQuantity > 1 ? 'hidden' : ''} border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all`}>
-                    <HiOutlineTrash className='text-red-500 size-5' />
-                  </button>
-                  <button onClick={() => dispatch(decreaseQuantity(data))} className={`${productQuantity > 1 ? '' : 'hidden'} border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all`}>
-                    <HiMinus className='text-red-500 size-5' />
-                  </button>
-                  <span>{existingProduct?.quantity}</span>
-                  <div>
-                    <button onClick={() => dispatch(increaseQuantity(data))} className='border border-zinc-400 p-2 rounded-md hover:bg-zinc-400/10 cursor-pointer transition-all'>
-                      <HiPlus className='text-green-600 size-5' />
-                    </button>
-                  </div>
-                </div> */}
-              {/* Counter Button */}
-
-              {/* </div> */}
-              {/* ProductCounter */}
             </div>
           </div>
 

@@ -3,6 +3,7 @@ import ReactDom from 'react-dom'
 import { IoMdClose } from "react-icons/io";
 import modalsContext from '../Contexts/modalsContext';
 import { useSelector } from 'react-redux';
+import Counter from './Counter';
 
 export default function Cart() {
 
@@ -33,8 +34,8 @@ export default function Cart() {
                                         <p>{product.price} $</p>
                                     </div>
                                 </div>
-                                <div className='text-center'>
-                                    <p>counter</p>
+                                <div className='flex justify-center'>
+                                    <Counter product={product}/>
                                 </div>
                             </section>
                         ))}
