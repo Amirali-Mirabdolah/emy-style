@@ -31,6 +31,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/products' element={<AllProducts />} />
           <Route path='/products/:productID' element={<ProductPage />} />
+          {/* <Route path='/'/> */}
         </Routes>
       </modalsContext.Provider>
       {/* {isShowCart && <Cart />} */}

@@ -29,7 +29,7 @@ export default function HomePage() {
           <div className='-z-10 absolute top-0 left-0 size-full bg-black/55 gap-4 px-4 py-20'></div>
           <img src="../public/images/hero.jpg" alt="store" className='absolute -z-20 size-full object-cover' />
           <h1 className='text-3xl text-white font-bold lg:text-5xl'>A Minimal E-commerce Platform</h1>
-          <p className='text-white lg:text-xl'>built whith ReactJS and Tailwind CSS</p>
+          <p className='text-white lg:text-xl'>built with ReactJS and Tailwind CSS</p>
         </div>
 
 
@@ -46,7 +46,6 @@ export default function HomePage() {
               <Link to={`/products/${products.id}`} key={products.id}>
                 <ProductsBox {...products} />
               </Link>
-
             ))}
           </div>
         </section>

@@ -1,21 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { data, Link, useLocation, useParams } from 'react-router-dom'
-import { getProduct } from '../services/product'
 import useProduct from '../hooks/useProduct'
-import { useQuery } from '@tanstack/react-query'
-import { FaChevronRight } from "react-icons/fa6";
 import modalsContext from '../Contexts/modalsContext'
 import SearchInput from '../Components/SearchInput'
 import { IoCartOutline } from "react-icons/io5";
-import { HiOutlineTrash } from "react-icons/hi";
-import { HiPlus } from "react-icons/hi";
-import { HiMinus } from "react-icons/hi";
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, decreaseQuantity, increaseQuantity, removeFromCart } from '../store/cart-slice'
 import BreadCrumb from '../Components/BreadCrumb'
 import Loader from '../Components/Loader'
 import Cart from '../Components/Cart'
 import Counter from '../Components/Counter'
+import RelatedProducts from '../Components/RelatedProducts'
 
 export default function ProductPage() {
 
@@ -33,19 +28,12 @@ export default function ProductPage() {
   const { id, title, slug, description, images, price } = data || {}
 
   const [showProductCounter, setShowProductCounter] = useState(false)
-  const [quantity, setQuantity] = useState(1)
-  const [isShowTrash, setIsShowTrash] = useState(false)
 
-  const cart = useSelector((state) => state.cart)
-  // console.log('cart.cartItems :', cart.cartItems);
 
   const dispatch = useDispatch()
   const itemInCart = useSelector(state => state.cart.cartItems)
-  // const productQuantity = itemInCart[0]?.quantity
-
   const existingProduct = itemInCart.find(item => item.id === id)
-  console.log('existingProduct: ', existingProduct)
-  // console.log(itemInCart[0].quantity);
+  // console.log('existingProduct: ', existingProduct)
 
   const addToCartButton = () => {
     dispatch(addToCart(data))
@@ -66,11 +54,11 @@ export default function ProductPage() {
   return (
     <>
       <main className='min-h-screen'>
-        <div className='container mx-auto p-4'>
+        <div className='container mx-auto p-4 flex-col'>
           <BreadCrumb product={data} />
-          <div className='mt-4 gap-x-6 flex items-center'>
-            <div className='h-96'>
-              <img className='object-cover rounded-xl' src={images} alt="" />
+          <div className='mt-4 gap-x-6 md:flex items-center md:h-[480px]'>
+            <div className='flex md:w-3/5 justify-center items-center py-2 md:h-96'>
+              <img className='object-cover size-[440px] rounded-xl' src={images[0]} alt="" />
             </div>
             <div className='flex flex-col gap-4 gap-y-3 justify-center'>
               <h1 className='mb-2 text-2xl font-black'>{title}</h1>
@@ -89,7 +77,10 @@ export default function ProductPage() {
               </div>
             </div>
           </div>
-
+          <section className='my-8 space-y-6'>
+            <h2 className='text-center font-bold text-lg lg:text-2xl'>{data.category.name} Products</h2>
+            <RelatedProducts category={data.category.id} />
+          </section>
         </div>
       </main>
       {contextData.isShowSearchBox && <SearchInput />}

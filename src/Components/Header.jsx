@@ -25,13 +25,13 @@ export default function Header() {
                     <div className='md:flex md:flex-1 justify-start items-center h-8'>
                         <a href="#" className='hidden md:inline-flex items-center justify-center max-w-max h-full hover:bg-zinc-100 rounded-[6px] transition-all'>Categories
                             <div className='invisible hover:visible'>
-                                <a href="#">
+                                {/* <a href="#"> */}
                                     <div>
                                         {/* icon */}
                                         {/* image */}
                                         text
                                     </div>
-                                </a>
+                                {/* </a> */}
                             </div>
                             <MdKeyboardArrowDown />
                         </a>

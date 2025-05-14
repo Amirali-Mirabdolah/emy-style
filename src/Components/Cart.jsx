@@ -2,15 +2,22 @@ import React, { useContext } from 'react'
 import ReactDom from 'react-dom'
 import { IoMdClose } from "react-icons/io";
 import modalsContext from '../Contexts/modalsContext';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Counter from './Counter';
+import { removeFromCart } from '../store/cart-slice';
 
 export default function Cart() {
 
     const contextData = useContext(modalsContext)
     const productsInCart = useSelector(state => state.cart.cartItems)
+    const dispatch = useDispatch()
     console.log('cart component: ', productsInCart);
 
+
+    const removeFromCartButton = () => {
+        contextData.setShowProductCounter(false)
+        dispatch(removeFromCart(productsInCart))
+    }
 
     const closeCart = (e) => {
         if (e.target.id === "cart-wrapper" || e.target.id === "cart-close-icon") {
@@ -35,7 +42,7 @@ export default function Cart() {
                                     </div>
                                 </div>
                                 <div className='flex justify-center'>
-                                    <Counter product={product}/>
+                                    <Counter product={product} removeFromCartButton={removeFromCartButton} />
                                 </div>
                             </section>
                         ))}

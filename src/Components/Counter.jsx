@@ -4,14 +4,9 @@ import { decreaseQuantity, increaseQuantity } from '../store/cart-slice'
 import { HiMinus, HiOutlineTrash, HiPlus } from 'react-icons/hi'
 
 export default function Counter({ product,removeFromCartButton }) {
-
     const dispatch = useDispatch()
     const itemsInCart = useSelector(state => state.cart.cartItems)
-    // console.log("couter state",itemsInCart);
-    // console.log("product in couter",product);
-
     const existingProduct = itemsInCart.find(item => item.id === product.id)
-    // console.log("counter: ", existingProduct);
 
     return (
         <>
