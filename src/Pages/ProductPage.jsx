@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { data, Link, useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import useProduct from '../hooks/useProduct'
 import modalsContext from '../Contexts/modalsContext'
 import SearchInput from '../Components/SearchInput'
 import { IoCartOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart, decreaseQuantity, increaseQuantity, removeFromCart } from '../store/cart-slice'
+import { addToCart, removeFromCart } from '../store/cart-slice'
 import BreadCrumb from '../Components/BreadCrumb'
 import Loader from '../Components/Loader'
 import Cart from '../Components/Cart'
@@ -16,6 +16,7 @@ export default function ProductPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+    contextData.setShowSearchBox(false)
   }, [])
 
   const contextData = useContext(modalsContext)
@@ -28,7 +29,6 @@ export default function ProductPage() {
   const { id, title, slug, description, images, price } = data || {}
 
   const [showProductCounter, setShowProductCounter] = useState(false)
-
 
   const dispatch = useDispatch()
   const itemInCart = useSelector(state => state.cart.cartItems)
