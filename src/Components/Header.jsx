@@ -23,29 +23,27 @@ export default function Header() {
                         <h3 className='hidden md:inline'>EMY STYLE</h3>
                     </Link>
                     <div className='md:flex md:flex-1 justify-start items-center h-8'>
-                        <a href="#" className='hidden md:inline-flex items-center justify-center max-w-max h-full hover:bg-zinc-100 rounded-[6px] transition-all'>Categories
-                            <div className='invisible hover:visible'>
-                                {/* <a href="#"> */}
-                                    <div>
-                                        {/* icon */}
-                                        {/* image */}
-                                        text
-                                    </div>
-                                {/* </a> */}
+                        <div className='relative group'>
+                            <div className='hidden md:inline-flex items-center justify-center gap-x-1 px-2 py-1.5 cursor-pointer hover:bg-zinc-100 rounded-[6px] transition-all'>
+                                <p className='font-semibold'>Categories</p>
+                                <MdKeyboardArrowDown />
                             </div>
-                            <MdKeyboardArrowDown />
-                        </a>
+                            <div className='absolute grid grid-cols-2 gap-3 p-4 -left-[60px] top-10 opacity group-hover:opacity-100 group-hover:visible bg-white border border-zinc-300 lg:w-[600px] transition-all shadow-xl rounded-xl'>
+                                <Link className='flex items-center h-[90px] gap-4 rounded-lg border border-zinc-300 p-4 hover:ring-2 hover:ring-zinc-900 transition-all duration-200'>
+                                    <img className='size-14 object-cover rounded-md' src="../public/images/hero.jpg" alt="category" />
+                                    <div>
+                                        <p className='font-semibold text-sm'>Electronics</p>
+                                        <p className='text-zinc-400 text-xs/5'>about 21 hours ago</p>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                     <div className='flex w-4/5 md:flex-1 md:justify-end gap-x-4 *:hover:bg-zinc-100 transition-all'>
-                        <button onClick={() => {
-                            contexDate.setShowSearchBox(true)
-                            console.log(contexDate.isShowSearchBox);
-
-                        }} className='flex justify-center flex-1 items-center border gap-x-3 rounded-2xl text-nowrap'>
+                        <button onClick={() => contexDate.setShowSearchBox(true)} className='flex justify-center flex-1 items-center border gap-x-3 rounded-2xl text-nowrap'>
                             <CiSearch className='size-6' />
                             Search Products
                         </button>
-                        {/* <div className='*:border *:p-1 *:rounded-[5px] transition-all space-x-3'> */}
                         <button onClick={() => contexDate.setIsShowCart(true)} className='p-[3px] border rounded-[6px]'>
                             <TbShoppingBag className='size-6' />
                         </button>
@@ -53,7 +51,6 @@ export default function Header() {
                             <TbMoon className='size-6' />
                             <GoSun className='hidden' />
                         </button>
-                        {/* </div> */}
                     </div>
                 </nav>
             </header>

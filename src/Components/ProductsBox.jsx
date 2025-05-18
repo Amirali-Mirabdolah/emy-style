@@ -1,20 +1,18 @@
 import React from 'react'
 
-export default function ProductsBox({ ...products }) {
+export default function ox({ images, title, price, category }) {
     return (
         <>
-            {/* <a href="#"> */}
             <div>
                 <figure className='relative aspect-square rounded-xl overflow-hidden'>
-                    <img src={products.images[1]} alt="product image" className='size-full object-cover shrink-0 rounded-xl duration-300 hover:scale-110' />
+                    <img src={images[1]} alt="product image" className='size-full object-cover shrink-0 rounded-xl duration-300 hover:scale-110' />
                 </figure>
                 <div>
-                    <h4 className='line-clamp-2 lg:line-clamp-1'>{products.title}</h4>
-                    <p>${products.price}</p>
-                    <p className='mt-2 rounded-md w-fit p-2 font-medium text-xs shadow-sm bg-zinc-200'>{products.category.slug}</p>
+                    <h4 className='line-clamp-2 lg:line-clamp-1'>{title}</h4>
+                    <p>${price}</p>
+                    <p className='mt-2 rounded-md w-fit p-2 font-medium text-xs shadow-sm bg-zinc-200'>{category.slug}</p>
                 </div>
             </div>
-            {/* </a> */}
         </>
     )
 }

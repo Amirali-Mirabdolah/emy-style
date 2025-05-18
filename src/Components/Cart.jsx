@@ -48,7 +48,6 @@ export default function Cart() {
                         ))}
                     </div>
                     : <h2 className='text-center font-bold text-2xl'>Cart is empty</h2>}
-
             </div>
         </div>, document.getElementById('modals-parent')
     )
