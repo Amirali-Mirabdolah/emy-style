@@ -7,12 +7,17 @@ import { GoSun } from "react-icons/go";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import modalsContext from '../Contexts/modalsContext';
 import { Link } from 'react-router-dom';
+import useCategories from '../hooks/useCategories';
+import CategoryBox from './CategoryBox';
 
 
 
 export default function Header() {
 
     const contexDate = useContext(modalsContext)
+    const { data = [] } = useCategories()
+    // console.log('data in header ', data);
+
 
     return (
         <>
@@ -28,14 +33,13 @@ export default function Header() {
                                 <p className='font-semibold'>Categories</p>
                                 <MdKeyboardArrowDown />
                             </div>
-                            <div className='absolute grid grid-cols-2 gap-3 p-4 -left-[60px] top-10 opacity group-hover:opacity-100 group-hover:visible bg-white border border-zinc-300 lg:w-[600px] transition-all shadow-xl rounded-xl'>
-                                <Link className='flex items-center h-[90px] gap-4 rounded-lg border border-zinc-300 p-4 hover:ring-2 hover:ring-zinc-900 transition-all duration-200'>
-                                    <img className='size-14 object-cover rounded-md' src="../public/images/hero.jpg" alt="category" />
-                                    <div>
-                                        <p className='font-semibold text-sm'>Electronics</p>
-                                        <p className='text-zinc-400 text-xs/5'>about 21 hours ago</p>
-                                    </div>
-                                </Link>
+                            <div className='absolute grid grid-cols-2 gap-3 p-4 -left-[60px] top-10 opacity-0 invisible group-hover:opacity-100 group-hover:visible delay-300 bg-white border border-zinc-300 w-[500px] lg:w-[600px] transition-all shadow-xl rounded-xl'>
+                                {data.slice(0, 5).map(product => (
+                                    <Link key={product.id} to={`/categories/${product.id}`}>
+                                        <CategoryBox {...product} />
+                                    </Link>
+                                ))}
+
                             </div>
                         </div>
                     </div>

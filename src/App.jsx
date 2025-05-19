@@ -4,11 +4,11 @@ import './App.css'
 import Header from './Components/Header'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from "./Pages/HomePage"
-import AllProducts from './Pages/AllProducts'
 import ProductPage from './Pages/ProductPage'
 import modalsContext from './Contexts/modalsContext'
 import SearchInput from './Components/SearchInput'
 import Cart from './Components/Cart'
+import CategoryProducts from './Pages/CategoryProducts'
 
 function App() {
 
@@ -29,9 +29,8 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/products' element={<AllProducts />} />
+          <Route path='/categories/:categoryID' element={<CategoryProducts />} />
           <Route path='/products/:productID' element={<ProductPage />} />
-          {/* <Route path='/'/> */}
         </Routes>
       </modalsContext.Provider>
       {/* {isShowCart && <Cart />} */}
