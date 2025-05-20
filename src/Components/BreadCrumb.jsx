@@ -14,14 +14,14 @@ export default function BreadCrumb({ product }) {
                     <FaChevronRight />
                 </li>
                 <li>
-                    <Link to={"/"}>
+                    <Link to={`/categories/${product?.category.id}`}>
                         <p>{product?.category.slug}</p>
                     </Link>
                     <FaChevronRight />
                 </li>
                 <li>
                     <Link to={"/"}>
-                        <p>{product?.title}</p>
+                        <p className='line-clamp-1'>{product?.title}</p>
                     </Link>
                 </li>
             </ul>

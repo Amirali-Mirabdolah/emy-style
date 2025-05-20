@@ -22,8 +22,6 @@ export default function ProductPage() {
   }, [])
 
   const contextData = useContext(modalsContext)
-  // const isShowProductCounter = contextData.isShowProductCounter
-
   const params = useParams()
   const productID = params.productID
 
@@ -92,7 +90,6 @@ export default function ProductPage() {
                 </Link>
               ))}
             </div>
-            {/* <RelatedProducts category={data.category.id} /> */}
           </section>
         </div>
       </main>

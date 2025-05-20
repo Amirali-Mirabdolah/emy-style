@@ -41,7 +41,7 @@ export default function HomePage() {
               <FaArrowRightLong />
             </Link>
           </div>
-          <div className='grid sm:grid-cols-2 lg:grid-cols-5 gap-4'>
+          <div className='grid grid-cols-2 lg:grid-cols-5 gap-4'>
             {data?.map((products) => (
               <Link to={`/products/${products.id}`} key={products.id}>
                 <ProductsBox {...products} />
