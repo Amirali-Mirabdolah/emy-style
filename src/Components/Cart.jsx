@@ -10,9 +10,10 @@ export default function Cart() {
 
     const contextData = useContext(modalsContext)
     const productsInCart = useSelector(state => state.cart.cartItems)
+    const totalPrice = useSelector(state => state.cart.totalPrice)
     const dispatch = useDispatch()
-    console.log('cart component: ', productsInCart);
-
+    // console.log('cart component: ', productsInCart);
+    // console.log('total price:', totalPrice)
 
     const removeFromCartButton = () => {
         contextData.setShowProductCounter(false)
@@ -48,7 +49,7 @@ export default function Cart() {
                         ))}
                     </div>
                     : (<h2 className='text-center font-bold text-2xl'>Cart is empty</h2>)}
-                    <p className="font-bold my-3 text-sm/6">Total: </p>
+                <p className="font-bold my-3 text-sm/6">Total: {totalPrice} $</p>
             </div>
         </div>, document.getElementById('modals-parent')
     )

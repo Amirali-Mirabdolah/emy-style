@@ -23,7 +23,7 @@ export default function CategoryProducts() {
         <h1 className="font-bold text-xl md:font-black md:text-2xl">All Products</h1>
         <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
           {data.map(product => (
-            <Link to={`/products/${product.id}`}>
+            <Link to={`/products/${product.id}`} key={product.id}>
               <ProductsBox {...product} />
             </Link>
           ))}
