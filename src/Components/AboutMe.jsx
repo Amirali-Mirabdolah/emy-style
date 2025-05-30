@@ -6,10 +6,10 @@ import { TbBrandGmail } from "react-icons/tb";
 export default function AboutMe() {
     return (
         <>
-            <div className="dark:bg-red-500 mt-8 border-t border-zinc-300">
+            <div className="dark:bg-dark dark:border-t-dark-border border-t border-zinc-300">
                 <div className="container mx-auto flex items-center justify-between gap-4 p-4">
-                    <p className='text-xs text-zinc-500 py-1'>Developed by <span className='font-bold text-zinc-900 underline underline-offset-4 decoration-wavy'>Amirali Mirabdolah</span></p>
-                    <div className='flex gap-6 items-center **:size-6'>
+                    <p className='text-xs text-zinc-500 py-1'>Developed by <span className=' font-bold text-zinc-900 underline underline-offset-4 decoration-wavy dark:text-white'>Amirali Mirabdolah</span></p>
+                    <div className='flex gap-6 items-center **:size-6 dark:text-white'>
                         <a href="https://github.com/Amirali-Mirabdolah"><FiGithub /></a>
                         <a href="https://www.linkedin.com/in/amirali-mirabdolah/"><CiLinkedin /></a>
                         <a href="mailto:amiralimirabdolah@gmail.com"><TbBrandGmail /></a>

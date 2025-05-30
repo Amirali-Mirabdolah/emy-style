@@ -28,7 +28,7 @@ export default function Cart() {
 
     return ReactDom.createPortal(
         <div onClick={closeCart} id='cart-wrapper' className='fixed flex items-center justify-center top-0 z-30 w-full h-screen bg-zinc-700/75'>
-            <div className={`fixed ${contextData?.isShowCart ? 'right-0' : '-right-96'} w-96 gap-4 p-6 bg-white top-0 min-h-screen transition-all duration-500`}>
+            <div className={`fixed ${contextData?.isShowCart ? 'right-0' : '-right-96'} w-[75%] md:w-96 gap-4 p-6 bg-white dark:bg-dark dark:text-white top-0 min-h-screen transition-all duration-500`}>
                 <h2 className='text-lg font-bold py-3'>Cart</h2>
                 <IoMdClose onClick={closeCart} id='cart-close-icon' className='absolute right-2 top-[23px] size-5 cursor-pointer' />
                 {productsInCart.length ?
@@ -48,7 +48,7 @@ export default function Cart() {
                             </section>
                         ))}
                     </div>
-                    : (<h2 className='text-center font-bold text-2xl'>Cart is empty</h2>)}
+                    : (<h2 className='text-center font-bold md:text-2xl'>Cart is empty</h2>)}
                 <p className="font-bold my-3 text-sm/6">Total: {totalPrice} $</p>
             </div>
         </div>, document.getElementById('modals-parent')

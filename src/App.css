@@ -1,3 +1,22 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-dark: #09090b;
+    --color-dark-hover: #27272a;
+    --color-dark-border: #27272a;
+    --color-dark-button: #1c1c1f;
+}
+
+* {
+    /* box-sizing: border-box; */
+    /* max-width: 100%; */
+    /* overflow-x: hidden; */
+}
+
+body{
+    /* width: 2000px; */
+    /* width: 100%; */
+    /* overflow-x: hidden; */
+}
