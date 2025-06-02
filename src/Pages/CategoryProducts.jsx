@@ -19,7 +19,7 @@ export default function CategoryProducts() {
 
   return (
     <>
-      <section className='p-4 space-y-4'>
+      <section className='p-4 space-y-4 dark:bg-dark dark:text-white'>
         <h1 className="font-bold text-xl md:font-black md:text-2xl">All Products</h1>
         <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
           {data.map(product => (

@@ -12,12 +12,12 @@ export default function Cart() {
     const productsInCart = useSelector(state => state.cart.cartItems)
     const totalPrice = useSelector(state => state.cart.totalPrice)
     const dispatch = useDispatch()
-    // console.log('cart component: ', productsInCart);
-    // console.log('total price:', totalPrice)
 
-    const removeFromCartButton = () => {
+    const removeFromCartButton = (product) => {
+        // console.log('cart: ', productsInCart);
+        console.log(product);
         contextData.setShowProductCounter(false)
-        dispatch(removeFromCart(productsInCart))
+        dispatch(removeFromCart(product))
     }
 
     const closeCart = (e) => {
@@ -27,12 +27,12 @@ export default function Cart() {
     }
 
     return ReactDom.createPortal(
-        <div onClick={closeCart} id='cart-wrapper' className='fixed flex items-center justify-center top-0 z-30 w-full h-screen bg-zinc-700/75'>
+        <div onClick={closeCart} id='cart-wrapper' className='fixed flex items-center justify-center top-0 z-30 inset-0 bg-zinc-700/75'>
             <div className={`fixed ${contextData?.isShowCart ? 'right-0' : '-right-96'} w-[75%] md:w-96 gap-4 p-6 bg-white dark:bg-dark dark:text-white top-0 min-h-screen transition-all duration-500`}>
                 <h2 className='text-lg font-bold py-3'>Cart</h2>
                 <IoMdClose onClick={closeCart} id='cart-close-icon' className='absolute right-2 top-[23px] size-5 cursor-pointer' />
                 {productsInCart.length ?
-                    <div className='h-[410px] overflow-y-auto'>
+                    <div className='max-h-[410px] overflow-y-auto'>
                         {productsInCart.map((product) => (
                             <section key={product.id} className='border-b border-b-zinc-400 py-3 space-y-3'>
                                 <div className='flex gap-x-3 items-center'>
@@ -43,7 +43,7 @@ export default function Cart() {
                                     </div>
                                 </div>
                                 <div className='flex justify-center'>
-                                    <Counter product={product} removeFromCartButton={removeFromCartButton} />
+                                    <Counter product={product} removeFromCartButton={() => removeFromCartButton(product)} />
                                 </div>
                             </section>
                         ))}

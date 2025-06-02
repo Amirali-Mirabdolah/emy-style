@@ -45,6 +45,7 @@ export default function ProductPage() {
   }
 
   const removeFromCartButton = () => {
+    console.log(data);
     setShowProductCounter(false)
     dispatch(removeFromCart(data))
   }
@@ -57,7 +58,7 @@ export default function ProductPage() {
 
   return (
     <>
-      <main className='min-h-screen'>
+      <main className='min-h-screen dark:bg-dark dark:text-white'>
         <div className='container mx-auto p-4 flex-col'>
           <BreadCrumb product={data} />
           <div className='mt-4 gap-x-6 md:flex items-center md:h-[480px]'>
@@ -66,7 +67,7 @@ export default function ProductPage() {
             </div>
             <div className='flex flex-col gap-4 gap-y-3 justify-center'>
               <h1 className='mb-2 text-2xl font-black'>{title}</h1>
-              <p>{price}$</p>
+              <p>{price} $</p>
               <div className='space-y-1'>
                 <h3 className='text-lg font-black'>Description</h3>
                 <p className='border-b pb-5 text-zinc-500'>{description}</p>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { decreaseQuantity, increaseQuantity } from '../store/cart-slice'
 import { HiMinus, HiOutlineTrash, HiPlus } from 'react-icons/hi'
 
-export default function Counter({ product,removeFromCartButton }) {
+export default function Counter({ product, removeFromCartButton }) {
     const dispatch = useDispatch()
     const itemsInCart = useSelector(state => state.cart.cartItems)
     const existingProduct = itemsInCart.find(item => item.id === product.id)
