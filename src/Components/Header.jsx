@@ -21,7 +21,7 @@ export default function Header({ toggleDarkMode }) {
 
     return (
         <>
-            <header className='sticky top-0 z-20 bg-white dark:bg-dark dark:text-white'>
+            <header className='sticky top-0 z-20 bg-white dark:bg-dark border-b border-white-border dark:border-dark-hover dark:text-white'>
                 <nav className='w-full mx-auto flex justify-center md:justify-between items-center gap-4 px-4 py-3'>
                     <Link to={'/'} className='flex items-center gap-x-1 text-2xl'>
                         <PiTShirtBold />

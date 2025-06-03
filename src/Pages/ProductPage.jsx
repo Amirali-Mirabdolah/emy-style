@@ -13,6 +13,7 @@ import Counter from '../Components/Counter'
 import ProductsBox from '../Components/ProductsBox'
 import RelatedProducts from '../Components/RelatedProducts'
 import useCategory from '../hooks/useCategory'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
 export default function ProductPage() {
 
@@ -59,40 +60,42 @@ export default function ProductPage() {
   return (
     <>
       <main className='min-h-screen dark:bg-dark dark:text-white'>
-        <div className='container mx-auto p-4 flex-col'>
-          <BreadCrumb product={data} />
-          <div className='mt-4 gap-x-6 md:flex items-center md:h-[480px]'>
-            <div className='flex md:w-3/5 justify-center items-center py-2 md:h-96'>
-              <img className='object-cover size-[440px] rounded-xl' src={images[1]} alt="" />
-            </div>
-            <div className='flex flex-col gap-4 gap-y-3 justify-center'>
-              <h1 className='mb-2 text-2xl font-black'>{title}</h1>
-              <p>{price} $</p>
-              <div className='space-y-1'>
-                <h3 className='text-lg font-black'>Description</h3>
-                <p className='border-b pb-5 text-zinc-500'>{description}</p>
+        <SkeletonTheme baseColor="#202020" highlightColor="#444">
+          <div className='container mx-auto p-4 flex-col'>
+            <BreadCrumb product={data} />
+            <div className='mt-4 gap-x-6 md:flex items-center md:h-[480px]'>
+              <div className='flex md:w-3/5 justify-center items-center py-2 md:h-96'>
+                <img className='object-cover size-[440px] rounded-xl' src={images[0]} alt="" />
               </div>
-              <div className='h-10 flex items-center'>
-                {existingProduct ?
-                  <Counter product={data} removeFromCartButton={removeFromCartButton} />
-                  : <button onClick={addToCartButton} className='flex items-center gap-x-1 px-4 py-2 cursor-pointer text-white bg-zinc-700 hover:bg-zinc-600 transition-all w-fit h-10 rounded-md'>
-                    <IoCartOutline className='size-5' />
-                    Add
-                  </button>}
+              <div className='flex flex-col gap-4 gap-y-3 justify-center'>
+                <h1 className='mb-2 text-2xl font-black'>{<Skeleton height={30} count={1} />}</h1>
+                <p>{price} $</p>
+                <div className='space-y-1'>
+                  <h3 className='text-lg font-black'>Description</h3>
+                  <p className='border-b pb-5 text-zinc-500'>{description}</p>
+                </div>
+                <div className='h-10 flex items-center'>
+                  {existingProduct ?
+                    <Counter product={data} removeFromCartButton={removeFromCartButton} />
+                    : <button onClick={addToCartButton} className='flex items-center gap-x-1 px-4 py-2 cursor-pointer text-white bg-zinc-700 hover:bg-zinc-600 transition-all w-fit h-10 rounded-md'>
+                      <IoCartOutline className='size-5' />
+                      Add
+                    </button>}
+                </div>
               </div>
             </div>
+            <section className='my-8 space-y-6'>
+              <h2 className='text-center font-bold text-lg lg:text-2xl'>{data.category.name} Products</h2>
+              <div className='grid gap-4 grid-cols-2 md:grid-cols-5'>
+                {prodcuts.map(product => (
+                  <Link to={`/products/${product.id}`}>
+                    <ProductsBox {...product} />
+                  </Link>
+                ))}
+              </div>
+            </section>
           </div>
-          <section className='my-8 space-y-6'>
-            <h2 className='text-center font-bold text-lg lg:text-2xl'>{data.category.name} Products</h2>
-            <div className='grid gap-4 grid-cols-2 md:grid-cols-5'>
-              {prodcuts.map(product => (
-                <Link to={`/products/${product.id}`}>
-                  <ProductsBox {...product} />
-                </Link>
-              ))}
-            </div>
-          </section>
-        </div>
+        </SkeletonTheme>
       </main>
       {contextData.isShowSearchBox && <SearchInput />}
       {contextData.isShowCart && <Cart />}

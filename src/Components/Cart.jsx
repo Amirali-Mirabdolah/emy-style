@@ -5,6 +5,7 @@ import modalsContext from '../Contexts/modalsContext';
 import { useDispatch, useSelector } from 'react-redux';
 import Counter from './Counter';
 import { removeFromCart } from '../store/cart-slice';
+import { Link } from 'react-router-dom';
 
 export default function Cart() {
 
@@ -50,6 +51,9 @@ export default function Cart() {
                     </div>
                     : (<h2 className='text-center font-bold md:text-2xl'>Cart is empty</h2>)}
                 <p className="font-bold my-3 text-sm/6">Total: {totalPrice} $</p>
+                <Link to={'/checkout'}>
+                    <button>purchase</button>
+                </Link>
             </div>
         </div>, document.getElementById('modals-parent')
     )

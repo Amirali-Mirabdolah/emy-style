@@ -34,7 +34,7 @@ export default function HomePage() {
         <section className='container mx-auto p-4 dark:bg-dark dark:text-white'>
           <div className='flex w-full justify-between items-center mb-4'>
             <h4 className='text-lg xl:text-2xl font-bold'>Featured Products</h4>
-            <Link to="/products" className='inline-flex items-center justify-center h-9 rounded-md px-3 gap-2 hover:bg-zinc-100 transition-all'>
+            <Link to="/products" className='inline-flex items-center justify-center h-9 rounded-md px-3 gap-2 hover:bg-zinc-100 dark:hover:bg-dark-hover transition-all'>
               All Products
               <FaArrowRightLong />
             </Link>
