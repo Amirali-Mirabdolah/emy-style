@@ -52,7 +52,7 @@ export default function Cart() {
                     : (<h2 className='text-center font-bold md:text-2xl'>Cart is empty</h2>)}
                 <p className="font-bold my-3 text-sm/6">Total: {totalPrice} $</p>
                 <Link to={'/checkout'}>
-                    <button>purchase</button>
+                    <button className='checkout-button'>Checkout</button>
                 </Link>
             </div>
         </div>, document.getElementById('modals-parent')

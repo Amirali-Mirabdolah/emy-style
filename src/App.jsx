@@ -11,6 +11,7 @@ import Cart from './Components/Cart'
 import CategoryProducts from './Pages/CategoryProducts'
 import AboutMe from './Components/AboutMe'
 import CheckoutPage from './Pages/CheckoutPage'
+import NotFound from './Pages/NotFound'
 
 function App() {
   const [darkMode, setDarkMode] = useState(localStorage.getItem('theme'))
@@ -46,6 +47,7 @@ function App() {
           <Route path='/categories/:categoryID' element={<CategoryProducts />} />
           <Route path='/products/:productID' element={<ProductPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
         <AboutMe />
       </modalsContext.Provider>

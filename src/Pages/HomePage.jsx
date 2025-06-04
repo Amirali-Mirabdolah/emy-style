@@ -13,13 +13,19 @@ import Cart from '../Components/Cart';
 export default function HomePage() {
 
   const contextData = useContext(modalsContext)
-  const { data, error, isLoading } = useProducts()
+  const { data, isError, error, isLoading } = useProducts()
 
   if (isLoading) {
     return (
       <Loader />
     )
   }
+
+  // if (isError) {
+  //   return (
+  //     <h1>{error}</h1>
+  //   )
+  // }
 
   return (
     <>

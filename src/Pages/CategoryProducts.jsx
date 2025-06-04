@@ -8,10 +8,10 @@ import Loader from '../Components/Loader'
 export default function CategoryProducts() {
 
   const categoryId = useParams().categoryID
-  console.log(categoryId);
+  // console.log(categoryId);
 
   const { data = [], isLoading } = useCategoryProducts(categoryId)
-  console.log('data in catpro ', data);
+  // console.log('data in catpro ', data);
 
   if (isLoading) {
     return <Loader />
@@ -19,7 +19,7 @@ export default function CategoryProducts() {
 
   return (
     <>
-      <section className='p-4 space-y-4 dark:bg-dark dark:text-white'>
+      <section className='p-4 space-y-4 dark:bg-dark dark:text-white min-h-screen'>
         <h1 className="font-bold text-xl md:font-black md:text-2xl">All Products</h1>
         <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
           {data.map(product => (
