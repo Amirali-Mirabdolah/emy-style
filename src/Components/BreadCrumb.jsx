@@ -20,9 +20,9 @@ export default function BreadCrumb({ product }) {
                     <FaChevronRight />
                 </li>
                 <li>
-                    <Link to={"/"}>
-                        <p className='line-clamp-1'>{product?.title}</p>
-                    </Link>
+                    {/* <Link to={"/"}> */}
+                    <p className='line-clamp-1'>{product?.title}</p>
+                    {/* </Link> */}
                 </li>
             </ul>
         </>

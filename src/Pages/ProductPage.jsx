@@ -14,6 +14,7 @@ import ProductsBox from '../Components/ProductsBox'
 import RelatedProducts from '../Components/RelatedProducts'
 import useCategory from '../hooks/useCategory'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import EmblaCarousel from '../Components/embla/EmblaCarousel'
 
 export default function ProductPage() {
 
@@ -29,12 +30,13 @@ export default function ProductPage() {
   const contextData = useContext(modalsContext)
   const params = useParams()
   const productID = params.productID
+  const opitons = {}
 
   const { data, isLoading } = useProduct(productID)
   const { id, title, slug, description, images, price } = data || {}
 
   const { data: prodcuts = [] } = useCategory(data?.category.id)
-  console.log('category', prodcuts);
+  // console.log('category', prodcuts);
 
 
   const [showProductCounter, setShowProductCounter] = useState(false)
@@ -42,7 +44,7 @@ export default function ProductPage() {
   const dispatch = useDispatch()
   const itemInCart = useSelector(state => state.cart.cartItems)
   const existingProduct = itemInCart.find(item => item.id === id)
-  console.log('existingProduct: ', existingProduct)
+  // console.log('existingProduct: ', existingProduct)
 
   const addToCartButton = () => {
     dispatch(addToCart(data))
@@ -70,6 +72,7 @@ export default function ProductPage() {
           <div className='mt-4 gap-x-6 md:flex items-center md:h-[480px]'>
             <div className='flex md:w-3/5 justify-center items-center py-2 md:h-96'>
               <img className='object-cover size-[440px] rounded-xl' src={images[0]} alt="" />
+              {/* <EmblaCarousel slides={images} opitons={opitons} /> */}
             </div>
             <div className='flex flex-col gap-4 gap-y-3 justify-center'>
               <h1 className='mb-2 text-2xl font-black'>{title}</h1>
