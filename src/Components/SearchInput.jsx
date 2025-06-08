@@ -5,7 +5,6 @@ import { IoMdClose } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import useProducts from '../hooks/useProducts';
 import ProductInSearchBox from './ProductInSearchBox';
-import Loader from './Loader';
 
 export default function SearchInput() {
 
@@ -29,7 +28,7 @@ export default function SearchInput() {
         <input value={searchValue} onChange={(e) => setSearchValue(e.target.value)} type="text" placeholder="Search..." className='h-10 w-full px-3 py-2 rounded-md border focus:outline-none focus:ring-1 focus:ring-zinc-800' />
 
         {searchValue ?
-          (<div className='h-60 w-full overflow-y-auto'>
+          (<div className='h-60 w-full overflow-y-auto relative'>
             {searchValue && searchingProducts.slice(0, 5).map(product => (
               <Link key={product.id} to={`/products/${product.id}`}>
                 <ProductInSearchBox {...product} />
@@ -37,7 +36,7 @@ export default function SearchInput() {
             ))}
           </div>)
           : (<p className='text-sm text-zinc-500'>Start typing to search for products</p>)}
-        <button className='absolute bottom-0 md:hidden'>Cancell</button>
+        <button onClick={()=>contextData.setShowSearchBox(false)} className='checkout-button absolute mx-auto bottom-0 left-0 right-0 !w-[90%] md:hidden'>Cancell</button>
       </div>
     </div>, document.getElementById('modals-parent')
   )

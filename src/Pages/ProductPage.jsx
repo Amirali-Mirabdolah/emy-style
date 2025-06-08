@@ -61,7 +61,7 @@ export default function ProductPage() {
           <BreadCrumb product={data} />
           <div className='mt-4 gap-x-6 md:flex items-center md:h-[480px]'>
             <div className='flex md:w-3/5 justify-center items-center py-2 md:h-96'>
-              <img className='object-cover size-[440px] rounded-xl' src={images[0]} alt="" />
+              <img className='object-cover size-96 rounded-xl' src={images[0]} alt="" />
             </div>
             <div className='flex flex-col gap-4 gap-y-3 justify-center'>
               <h1 className='mb-2 text-2xl font-black'>{title}</h1>
