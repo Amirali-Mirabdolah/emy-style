@@ -2,16 +2,13 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRightLong } from "react-icons/fa6";
 import ProductsBox from '../Components/ProductsBox';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
 import useProducts from '../hooks/useProducts';
 import modalsContext from '../Contexts/modalsContext';
 import SearchInput from '../Components/SearchInput';
 import Loader from '../Components/Loader';
-import Header from '../Components/Header';
 import Cart from '../Components/Cart';
 
 export default function HomePage() {
-
   const contextData = useContext(modalsContext)
   const { data, isError, error, isLoading } = useProducts()
 
@@ -21,19 +18,11 @@ export default function HomePage() {
     )
   }
 
-  // if (isError) {
-  //   return (
-  //     <h1>{error}</h1>
-  //   )
-  // }
-
   return (
     <>
-      {/* <Header /> */}
       <main className='min-h-screen dark:bg-dark'>
         <div className='relative flex flex-col items-center gap-4 justify-center h-[400px] lg:h-[600px]'>
-          {/* <div className='-z-10 absolute top-0 left-0 size-full gap-4 px-4 py-20'></div> */}
-          <img src="../public/images/hero.jpg" alt="store" className='absolute size-full object-cover brightness-50' />
+          <img src="/images/hero.jpg" alt="store" className='absolute size-full object-cover brightness-50' />
           <h1 className='text-center text-2xl text-white font-bold lg:text-5xl z-10'>A Minimal E-commerce Platform</h1>
           <p className='text-white lg:text-xl z-10'>built with ReactJS and Tailwind CSS</p>
         </div>

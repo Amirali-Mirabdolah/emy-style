@@ -10,14 +10,9 @@ import { Link } from 'react-router-dom';
 import useCategories from '../hooks/useCategories';
 import CategoryBox from './CategoryBox';
 
-
-
 export default function Header({ toggleDarkMode }) {
-
     const contexDate = useContext(modalsContext)
     const { data = [] } = useCategories()
-    // console.log('data in header ', data);
-
 
     return (
         <>
@@ -50,10 +45,7 @@ export default function Header({ toggleDarkMode }) {
                         <button onClick={() => contexDate.setIsShowCart(true)} className='p-[3px] border rounded-[6px]'>
                             <TbShoppingBag className='size-6' />
                         </button>
-                        <button onClick={() => {
-                            toggleDarkMode()
-                            // console.log(contexDate.darkMode)
-                        }}
+                        <button onClick={toggleDarkMode}
                             className='p-[3px] border rounded-[6px] *:size-6'>
                             <TbMoon className={`${contexDate.darkMode ? 'hidden' : ''}`} />
                             <GoSun className={`${contexDate.darkMode ? '' : 'hidden'}`} />

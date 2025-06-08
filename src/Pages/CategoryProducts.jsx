@@ -1,5 +1,4 @@
 import React from 'react'
-// import useCategory from '../hooks/useCategory'
 import { Link, useParams } from 'react-router-dom'
 import useCategoryProducts from '../hooks/useCategoryProducts'
 import ProductsBox from '../Components/ProductsBox'
@@ -8,10 +7,7 @@ import Loader from '../Components/Loader'
 export default function CategoryProducts() {
 
   const categoryId = useParams().categoryID
-  // console.log(categoryId);
-
   const { data = [], isLoading } = useCategoryProducts(categoryId)
-  // console.log('data in catpro ', data);
 
   if (isLoading) {
     return <Loader />

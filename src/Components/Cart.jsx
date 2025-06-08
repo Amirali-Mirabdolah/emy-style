@@ -15,8 +15,6 @@ export default function Cart() {
     const dispatch = useDispatch()
 
     const removeFromCartButton = (product) => {
-        // console.log('cart: ', productsInCart);
-        console.log(product);
         contextData.setShowProductCounter(false)
         dispatch(removeFromCart(product))
     }

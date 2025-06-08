@@ -11,15 +11,11 @@ import Loader from '../Components/Loader'
 import Cart from '../Components/Cart'
 import Counter from '../Components/Counter'
 import ProductsBox from '../Components/ProductsBox'
-import RelatedProducts from '../Components/RelatedProducts'
 import useCategory from '../hooks/useCategory'
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 
 export default function ProductPage() {
 
   const location = useLocation().pathname
-  console.log(location);
-
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -34,7 +30,6 @@ export default function ProductPage() {
   const { id, title, slug, description, images, price } = data || {}
 
   const { data: prodcuts = [] } = useCategory(data?.category.id)
-  console.log('category', prodcuts);
 
 
   const [showProductCounter, setShowProductCounter] = useState(false)
@@ -42,7 +37,6 @@ export default function ProductPage() {
   const dispatch = useDispatch()
   const itemInCart = useSelector(state => state.cart.cartItems)
   const existingProduct = itemInCart.find(item => item.id === id)
-  console.log('existingProduct: ', existingProduct)
 
   const addToCartButton = () => {
     dispatch(addToCart(data))
@@ -50,7 +44,6 @@ export default function ProductPage() {
   }
 
   const removeFromCartButton = () => {
-    // console.log(data);
     setShowProductCounter(false)
     dispatch(removeFromCart(data))
   }
@@ -64,7 +57,6 @@ export default function ProductPage() {
   return (
     <>
       <main className='min-h-screen dark:bg-dark dark:text-white'>
-        {/* <SkeletonTheme baseColor="#202020" highlightColor="#444"> */}
         <div className='container mx-auto p-4 flex-col'>
           <BreadCrumb product={data} />
           <div className='mt-4 gap-x-6 md:flex items-center md:h-[480px]'>
@@ -99,7 +91,6 @@ export default function ProductPage() {
             </div>
           </section>
         </div>
-        {/* </SkeletonTheme> */}
       </main>
       {contextData.isShowSearchBox && <SearchInput />}
       {contextData.isShowCart && <Cart />}

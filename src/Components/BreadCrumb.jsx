@@ -15,7 +15,7 @@ export default function BreadCrumb({ product }) {
                 </li>
                 <li>
                     <Link to={`/categories/${product?.category.id}`}>
-                        <p>{product?.category.slug}</p>
+                        <p className='line-clamp-1'>{product?.category.slug}</p>
                     </Link>
                     <FaChevronRight />
                 </li>

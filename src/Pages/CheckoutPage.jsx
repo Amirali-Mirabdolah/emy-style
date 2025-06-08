@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/semantic-ui.css'
 import { useSelector } from 'react-redux'
 
 export default function CheckoutPage() {
 
     const productsInCart = useSelector(state => state.cart)
-    const [phone, setPhone] = useState('ir')
-
 
     return (
         <>

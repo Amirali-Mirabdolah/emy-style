@@ -1,6 +1,6 @@
 import React from 'react'
 import { TbError404 } from 'react-icons/tb'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function NotFound() {
     return (

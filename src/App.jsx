@@ -6,8 +6,6 @@ import { Route, Routes } from 'react-router-dom'
 import HomePage from "./Pages/HomePage"
 import ProductPage from './Pages/ProductPage'
 import modalsContext from './Contexts/modalsContext'
-import SearchInput from './Components/SearchInput'
-import Cart from './Components/Cart'
 import CategoryProducts from './Pages/CategoryProducts'
 import AboutMe from './Components/AboutMe'
 import CheckoutPage from './Pages/CheckoutPage'
@@ -51,8 +49,6 @@ function App() {
         </Routes>
         <AboutMe />
       </modalsContext.Provider>
-      {/* {isShowCart && <Cart />} */}
-      {/* {isShowSearchBox && <SearchInput />} */}
     </>
   )
 }
