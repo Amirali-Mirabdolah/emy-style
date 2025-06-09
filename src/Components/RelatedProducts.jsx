@@ -8,7 +8,7 @@ export default function RelatedProducts({ category }) {
 
     return (
         <>
-            <div className='grid gap-4 grid-cols-2 md:grid-cols-5'>
+            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
                 {data.map(product => (
                     <Link to={`/products/${product.id}`} key={product.id}>
                         <ProductsBox {...product} />

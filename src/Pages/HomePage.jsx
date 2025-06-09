@@ -10,7 +10,7 @@ import Cart from '../Components/Cart';
 
 export default function HomePage() {
   const contextData = useContext(modalsContext)
-  const { data, isError, error, isLoading } = useProducts()
+  const { data, isError, error, isLoading } = useProducts('10')
 
   if (isLoading) {
     return (
@@ -24,7 +24,7 @@ export default function HomePage() {
         <div className='relative flex flex-col items-center gap-4 justify-center h-[400px] lg:h-[600px]'>
           <img src="/images/hero.jpg" alt="store" className='absolute size-full object-cover brightness-50' />
           <h1 className='text-center text-2xl text-white font-bold lg:text-5xl z-10'>A Minimal E-commerce Platform</h1>
-          <p className='text-white lg:text-xl z-10'>built with ReactJS and Tailwind CSS</p>
+          <p className='text-white lg:text-xl z-10'>Built with ReactJS and Tailwind CSS</p>
         </div>
         <section className='container mx-auto p-4 dark:bg-dark dark:text-white'>
           <div className='flex w-full justify-between items-center mb-4'>
@@ -34,7 +34,7 @@ export default function HomePage() {
               <FaArrowRightLong />
             </Link>
           </div>
-          <div className='grid grid-cols-2 lg:grid-cols-5 gap-4'>
+          <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
             {data?.map((products) => (
               <Link to={`/products/${products.id}`} key={products.id}>
                 <ProductsBox {...products} />

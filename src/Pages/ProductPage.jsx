@@ -27,7 +27,7 @@ export default function ProductPage() {
   const productID = params.productID
 
   const { data, isLoading } = useProduct(productID)
-  const { id, title, slug, description, images, price } = data || {}
+  const { id, title, description, images, price } = data || {}
 
   const { data: prodcuts = [] } = useCategory(data?.category.id)
 
@@ -82,9 +82,9 @@ export default function ProductPage() {
           </div>
           <section className='my-8 space-y-6'>
             <h2 className='text-center font-bold text-lg lg:text-2xl'>{data.category.name} Products</h2>
-            <div className='grid gap-4 grid-cols-2 md:grid-cols-5'>
+            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
               {prodcuts.map(product => (
-                <Link to={`/products/${product.id}`}>
+                <Link to={`/products/${product.id}`} key={prodcuts.id}>
                   <ProductsBox {...product} />
                 </Link>
               ))}

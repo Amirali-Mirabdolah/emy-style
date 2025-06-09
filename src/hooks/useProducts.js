@@ -1,10 +1,10 @@
 import { getProducts } from '../services/product'
 import { useQuery } from '@tanstack/react-query'
 
-function useProducts() {
+function useProducts(limit) {
     return useQuery({
         queryKey: ['Products'],
-        queryFn: getProducts
+        queryFn: () => getProducts(limit)
     })
 }
 

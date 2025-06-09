@@ -9,7 +9,7 @@ import ProductInSearchBox from './ProductInSearchBox';
 export default function SearchInput() {
 
   const contextData = useContext(modalsContext)
-  const { data = [], isLoading } = useProducts()
+  const { data = [], isLoading } = useProducts('')
   const [searchValue, setSearchValue] = useState('')
 
   const searchingProducts = data.filter(product => product.title.toLowerCase().includes(searchValue.toLocaleLowerCase()))
